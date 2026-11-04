@@ -188,3 +188,55 @@ export default function App() {
     setErrorMessage('');
   }
 
+function handleDeleteEvent(idToDelete) {
+    const updatedEvents = events.filter(function (event) {
+      return event.id !== idToDelete;
+    });
+    setEvents(updatedEvents);
+  }
+
+  function handleClearAll() {
+    if (window.confirm('Are you sure you want to clear all events?')) {
+      setEvents([]);
+    }
+  }
+
+  function handleLoadSampleEvents() {
+    setEvents(defaultEvents);
+  }
+
+  // 7. FILTER & SORT EVENTS
+  // Step A: Filter by tab ('all', 'active', 'completed')
+  let visibleEvents = events.filter(function (event) {
+    const timeLeft = calculateTimeLeft(event.targetDate);
+    if (filter === 'active') {
+      return !timeLeft.isPast;
+    }
+    if (filter === 'completed') {
+      return timeLeft.isPast;
+    }
+    return true;
+  });
+
+  // Step B: Sort events
+  visibleEvents.sort(function (a, b) {
+    const timeA = new Date(a.targetDate).getTime();
+    const timeB = new Date(b.targetDate).getTime();
+
+    if (sortBy === 'nearest') {
+      return timeA - timeB;
+    }
+    if (sortBy === 'furthest') {
+      return timeB - timeA;
+    }
+    if (sortBy === 'title') {
+      return a.title.localeCompare(b.title);
+    }
+    return 0;
+  });
+
+  // Count active and completed events for stats
+  const activeCount = events.filter(function (event) {
+    return !calculateTimeLeft(event.targetDate).isPast;
+  }).length;
+  const completedCount = events.length - activeCount;
