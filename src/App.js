@@ -240,3 +240,64 @@ function handleDeleteEvent(idToDelete) {
     return !calculateTimeLeft(event.targetDate).isPast;
   }).length;
   const completedCount = events.length - activeCount;
+   // 8. RENDER USER INTERFACE (JSX)
+  return (
+    <div className="app-container">
+      {/* Background Lighting Elements */}
+      <div className="studio-spotlight" />
+      <div className="subtle-vignette" />
+
+      <div className="content-wrapper">
+        {/* Header Section */}
+        <header className="dashboard-header">
+          <h1 className="dashboard-title">
+            Countdown <span className="text-gradient">Dashboard</span>
+          </h1>
+          <p className="dashboard-subtitle">
+            Track milestones, launches, vacations, and special moments with real-time precision.
+          </p>
+
+          {/* Quick Stats Pills */}
+          <div className="stats-row">
+            <div className="stat-pill">
+              <span className="stat-number">{events.length}</span>
+              <span className="stat-label">Total Events</span>
+            </div>
+            <div className="stat-pill active-stat">
+              <span className="stat-number">{activeCount}</span>
+              <span className="stat-label">Active Timers</span>
+            </div>
+            <div className="stat-pill completed-stat">
+              <span className="stat-number">{completedCount}</span>
+              <span className="stat-label">Arrived / Passed</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Add Event Form Card */}
+        <section className="form-card">
+          <div className="form-card-header">
+            {/* Stopwatch Timer Symbol */}
+            <div className="form-header-icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="royalblue"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="13" r="8" />
+                <path d="M12 9v4l2.5 2.5" />
+                <path d="M10 2h4" />
+                <path d="m19 5-1.5 1.5" />
+              </svg>
+            </div>
+            <div>
+              <h2 className="form-title">Create New Countdown</h2>
+              <p className="form-desc">Set a date and watch the countdown begin immediately.</p>
+            </div>
+          </div>
