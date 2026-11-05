@@ -648,3 +648,240 @@ body {
   text-align: center;
 }
 
+.countdown-unit {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: slategray;
+  text-align: center;
+}
+
+.countdown-separator {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: silver;
+  margin-top: -0.75rem;
+  user-select: none;
+  text-align: center;
+}
+
+/* Event Arrived / Reached State */
+.event-past {
+  opacity: 0.95;
+}
+
+.event-arrived-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background-color: honeydew;
+  border: 1px solid palegreen;
+  padding: 1.1rem 1rem;
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.celebrate-icon {
+  font-size: 1.6rem;
+}
+
+.arrived-content strong {
+  display: block;
+  font-size: 0.95rem;
+  color: seagreen;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  text-align: left;
+}
+
+.arrived-content span {
+  font-size: 0.775rem;
+  color: darkslategray;
+  text-align: left;
+}
+
+/* Card Footer */
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid gainsboro;
+  padding-top: 0.85rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: darkslategray;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot-active {
+  background-color: royalblue;
+  box-shadow: 0 0 5px royalblue;
+}
+
+.dot-past {
+  background-color: seagreen;
+}
+
+/* Empty State Card */
+
+.empty-state-card {
+  text-align: center;
+  background-color: white;
+  border: 1px dashed silver;
+  border-radius: 20px;
+  padding: 3.5rem 2rem;
+  max-width: 580px;
+  margin: 1rem auto 3.5rem auto;
+  box-shadow: 0 4px 12px powderblue;
+}
+
+.empty-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  background-color: aliceblue;
+  border: 1px solid lightblue;
+  border-radius: 50%;
+  margin-bottom: 1.25rem;
+}
+
+.empty-emoji {
+  font-size: 2rem;
+}
+
+.empty-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: midnightblue;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.empty-text {
+  font-size: 0.925rem;
+  color: darkslategray;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+.sample-events-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: royalblue;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px lightsteelblue;
+  transition: all 0.2s ease;
+}
+
+.sample-events-btn:hover {
+  background-color: dodgerblue;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px lightskyblue;
+}
+
+/* Dashboard Footer*/
+
+.dashboard-footer {
+  text-align: center;
+  padding: 2.25rem 0 1rem 0;
+  border-top: 1px solid gainsboro;
+  color: slategray;
+  font-size: 0.85rem;
+}
+
+/* Responsive Adaptations */
+
+@media (max-width: 860px) {
+  .dashboard-title {
+    font-size: 2.35rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-tab {
+    flex: 1;
+    text-align: center;
+  }
+
+  .sort-group {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 500px) {
+  .app-container {
+    padding: 2rem 1rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.95rem;
+  }
+
+  .form-card {
+    padding: 1.25rem;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .countdown-display {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .countdown-digit {
+    font-size: 1.35rem;
+  }
+
+  .countdown-box {
+    min-width: 48px;
+    padding: 0.4rem 0.2rem;
+  }
+}
