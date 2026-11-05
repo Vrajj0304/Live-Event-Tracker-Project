@@ -35,18 +35,8 @@ const defaultEvents = [
 
 // 2. MAIN APP COMPONENT
 export default function App() {
-  // Load saved events from browser localStorage, or use defaultEvents
-  const [events, setEvents] = useState(function () {
-    const saved = localStorage.getItem('countdown_events');
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        return defaultEvents;
-      }
-    }
-    return defaultEvents;
-  });
+  // All countdown events (starts with defaultEvents)
+  const [events, setEvents] = useState(defaultEvents);
 
   // Current time state: updates every second to tick countdowns
   const [currentTime, setCurrentTime] = useState(Date.now());
@@ -73,7 +63,16 @@ export default function App() {
     };
   }, []);
 
-  // 4. SAVE TO LOCAL STORAGE
+  // 4. LOAD & SAVE LOCAL STORAGE (Simple & Easy)
+  // Load saved events once when page first opens
+  useEffect(function () {
+    const saved = localStorage.getItem('countdown_events');
+    if (saved) {
+      setEvents(JSON.parse(saved));
+    }
+  }, []);
+
+  // Save events whenever the list changes
   useEffect(function () {
     localStorage.setItem('countdown_events', JSON.stringify(events));
   }, [events]);
@@ -133,22 +132,6 @@ export default function App() {
     });
   }
 
-  // Quick preset button helper (e.g. +1 Day, +7 Days, +30 Days)
-  function handleQuickPreset(daysToAdd) {
-    const futureDate = new Date();
-    futureDate.setDate(futureDate.getDate() + daysToAdd);
-
-    // Format into 'YYYY-MM-DDTHH:mm' for datetime-local input
-    const year = futureDate.getFullYear();
-    const month = String(futureDate.getMonth() + 1).padStart(2, '0');
-    const day = String(futureDate.getDate()).padStart(2, '0');
-    const hours = String(futureDate.getHours()).padStart(2, '0');
-    const minutes = String(futureDate.getMinutes()).padStart(2, '0');
-
-    setTargetDate(`${year}-${month}-${day}T${hours}:${minutes}`);
-    setErrorMessage('');
-  }
-
   // 6. ADD & DELETE HANDLERS
   function handleAddEvent(e) {
     e.preventDefault();
@@ -188,7 +171,7 @@ export default function App() {
     setErrorMessage('');
   }
 
-function handleDeleteEvent(idToDelete) {
+  function handleDeleteEvent(idToDelete) {
     const updatedEvents = events.filter(function (event) {
       return event.id !== idToDelete;
     });
@@ -240,7 +223,8 @@ function handleDeleteEvent(idToDelete) {
     return !calculateTimeLeft(event.targetDate).isPast;
   }).length;
   const completedCount = events.length - activeCount;
-   // 8. RENDER USER INTERFACE (JSX)
+
+  // 8. RENDER USER INTERFACE (JSX)
   return (
     <div className="app-container">
       {/* Background Lighting Elements */}
@@ -301,7 +285,8 @@ function handleDeleteEvent(idToDelete) {
               <p className="form-desc">Set a date and watch the countdown begin immediately.</p>
             </div>
           </div>
-<form onSubmit={handleAddEvent} className="add-event-form">
+
+          <form onSubmit={handleAddEvent} className="add-event-form">
             <div className="form-grid">
               {/* Event Title Field */}
               <div className="form-group">
@@ -359,47 +344,6 @@ function handleDeleteEvent(idToDelete) {
                   <option value="Personal">🌟 Personal</option>
                 </select>
               </div>
-            </div>
-
-            {/* Quick Date Presets */}
-            <div className="quick-presets">
-              <span className="presets-label">Quick Presets:</span>
-              <button
-                type="button"
-                className="preset-btn"
-                onClick={function () {
-                  handleQuickPreset(1);
-                }}
-              >
-                +1 Day
-              </button>
-              <button
-                type="button"
-                className="preset-btn"
-                onClick={function () {
-                  handleQuickPreset(7);
-                }}
-              >
-                +1 Week
-              </button>
-              <button
-                type="button"
-                className="preset-btn"
-                onClick={function () {
-                  handleQuickPreset(30);
-                }}
-              >
-                +1 Month
-              </button>
-              <button
-                type="button"
-                className="preset-btn"
-                onClick={function () {
-                  handleQuickPreset(100);
-                }}
-              >
-                +100 Days
-              </button>
             </div>
 
             {/* Error Message */}
@@ -475,7 +419,8 @@ function handleDeleteEvent(idToDelete) {
             )}
           </div>
         </div>
-{/* Event Cards Grid OR Empty State */}
+
+        {/* Event Cards Grid OR Empty State */}
         {visibleEvents.length === 0 ? (
           <div className="empty-state-card">
             <div className="empty-icon-wrapper">
