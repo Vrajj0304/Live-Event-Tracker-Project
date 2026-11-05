@@ -301,3 +301,177 @@ function handleDeleteEvent(idToDelete) {
               <p className="form-desc">Set a date and watch the countdown begin immediately.</p>
             </div>
           </div>
+<form onSubmit={handleAddEvent} className="add-event-form">
+            <div className="form-grid">
+              {/* Event Title Field */}
+              <div className="form-group">
+                <label htmlFor="event-title" className="input-label">
+                  Event Title
+                </label>
+                <input
+                  id="event-title"
+                  type="text"
+                  className="text-input"
+                  placeholder="e.g., Summer Trip, Product Launch, Birthday..."
+                  value={title}
+                  onChange={function (e) {
+                    setTitle(e.target.value);
+                    if (errorMessage) setErrorMessage('');
+                  }}
+                  maxLength={60}
+                />
+              </div>
+
+              {/* Target Date/Time Field */}
+              <div className="form-group">
+                <label htmlFor="event-date" className="input-label">
+                  Target Date & Time
+                </label>
+                <input
+                  id="event-date"
+                  type="datetime-local"
+                  className="date-input"
+                  value={targetDate}
+                  onChange={function (e) {
+                    setTargetDate(e.target.value);
+                    if (errorMessage) setErrorMessage('');
+                  }}
+                />
+              </div>
+
+              {/* Category Selector */}
+              <div className="form-group">
+                <label htmlFor="event-category" className="input-label">
+                  Category
+                </label>
+                <select
+                  id="event-category"
+                  className="select-input"
+                  value={category}
+                  onChange={function (e) {
+                    setCategory(e.target.value);
+                  }}
+                >
+                  <option value="Celebration">🎉 Celebration</option>
+                  <option value="Work">💼 Work & Launch</option>
+                  <option value="Travel">✈️ Travel & Trip</option>
+                  <option value="Goal">🎯 Milestone / Goal</option>
+                  <option value="Personal">🌟 Personal</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Quick Date Presets */}
+            <div className="quick-presets">
+              <span className="presets-label">Quick Presets:</span>
+              <button
+                type="button"
+                className="preset-btn"
+                onClick={function () {
+                  handleQuickPreset(1);
+                }}
+              >
+                +1 Day
+              </button>
+              <button
+                type="button"
+                className="preset-btn"
+                onClick={function () {
+                  handleQuickPreset(7);
+                }}
+              >
+                +1 Week
+              </button>
+              <button
+                type="button"
+                className="preset-btn"
+                onClick={function () {
+                  handleQuickPreset(30);
+                }}
+              >
+                +1 Month
+              </button>
+              <button
+                type="button"
+                className="preset-btn"
+                onClick={function () {
+                  handleQuickPreset(100);
+                }}
+              >
+                +100 Days
+              </button>
+            </div>
+
+            {/* Error Message */}
+            {errorMessage && <div className="error-banner">{errorMessage}</div>}
+
+            {/* Submit Button */}
+            <div className="form-actions">
+              <button type="submit" className="submit-btn">
+                <span className="btn-icon">＋</span> Add Countdown Timer
+              </button>
+            </div>
+          </form>
+        </section>
+
+        {/* Filter and Sort Toolbar */}
+        <div className="controls-bar">
+          <div className="filter-tabs">
+            <button
+              type="button"
+              className={`filter-tab ${filter === 'all' ? 'active' : ''}`}
+              onClick={function () {
+                setFilter('all');
+              }}
+            >
+              All ({events.length})
+            </button>
+            <button
+              type="button"
+              className={`filter-tab ${filter === 'active' ? 'active' : ''}`}
+              onClick={function () {
+                setFilter('active');
+              }}
+            >
+              Active ({activeCount})
+            </button>
+            <button
+              type="button"
+              className={`filter-tab ${filter === 'completed' ? 'active' : ''}`}
+              onClick={function () {
+                setFilter('completed');
+              }}
+            >
+              Arrived ({completedCount})
+            </button>
+          </div>
+
+          <div className="sort-group">
+            <label htmlFor="sort-select" className="sort-label">
+              Sort by:
+            </label>
+            <select
+              id="sort-select"
+              className="sort-select"
+              value={sortBy}
+              onChange={function (e) {
+                setSortBy(e.target.value);
+              }}
+            >
+              <option value="nearest">Nearest First</option>
+              <option value="furthest">Furthest First</option>
+              <option value="title">Alphabetical (A-Z)</option>
+            </select>
+
+            {events.length > 0 && (
+              <button
+                type="button"
+                className="clear-all-btn"
+                onClick={handleClearAll}
+                title="Clear all events"
+              >
+                Clear All
+              </button>
+            )}
+          </div>
+        </div>
