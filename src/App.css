@@ -58,7 +58,7 @@ body {
   margin: 0 auto;
 }
 
-/*   Header Section */
+  /* Header Section */
 
 .dashboard-header {
   text-align: center;
@@ -139,7 +139,7 @@ body {
   color: seagreen;
 }
 
-/*   Add Event Form Card */
+/* Add Event Form Card */
 
 .form-card {
   background-color: white;
@@ -168,6 +168,7 @@ body {
   gap: 1rem;
   margin-bottom: 1.65rem;
 }
+
 .form-header-icon {
   display: flex;
   align-items: center;
@@ -260,41 +261,6 @@ body {
 .select-input option {
   background-color: white;
   color: midnightblue;
-}
-
-/* Quick Date Presets */
-.quick-presets {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.35rem;
-}
-
-.presets-label {
-  font-size: 0.775rem;
-  color: slategray;
-  font-weight: 600;
-  margin-right: 0.25rem;
-}
-
-.preset-btn {
-  background-color: ghostwhite;
-  border: 1px solid silver;
-  color: darkslategray;
-  font-size: 0.775rem;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.preset-btn:hover {
-  background-color: aliceblue;
-  border-color: lightskyblue;
-  color: navy;
-  transform: translateY(-1px);
 }
 
 /* Error Banner */
@@ -605,6 +571,7 @@ body {
 .calendar-icon {
   font-size: 0.875rem;
 }
+
 /* Countdown Timer Tiles*/
 
 .countdown-display {
