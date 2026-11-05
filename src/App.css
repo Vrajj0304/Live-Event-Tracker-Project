@@ -344,3 +344,264 @@ body {
 .btn-icon {
   font-size: 1.05rem;
 }
+
+/* Filter & Sorting Controls Bar*/
+
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.85rem;
+  flex-wrap: wrap;
+}
+
+.filter-tabs {
+  display: flex;
+  background-color: white;
+  border: 1px solid lightblue;
+  border-radius: 12px;
+  padding: 0.25rem;
+  box-shadow: 0 2px 6px lightblue;
+}
+
+.filter-tab {
+  background-color: transparent;
+  border: none;
+  color: darkslategray;
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.filter-tab:hover {
+  color: midnightblue;
+}
+
+.filter-tab.active {
+  background-color: aliceblue;
+  color: royalblue;
+  box-shadow: 0 1px 3px lightblue;
+}
+
+.sort-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.sort-label {
+  font-size: 0.8rem;
+  color: darkslategray;
+  font-weight: 500;
+}
+
+.sort-select {
+  background-color: white;
+  border: 1px solid lightblue;
+  color: midnightblue;
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: 0.45rem 0.85rem;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px lightblue;
+  transition: border-color 0.2s ease;
+}
+
+.sort-select:focus {
+  border-color: royalblue;
+}
+
+.clear-all-btn {
+  background-color: white;
+  border: 1px solid lightpink;
+  color: crimson;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px mistyrose;
+  transition: all 0.2s ease;
+}
+
+.clear-all-btn:hover {
+  background-color: mistyrose;
+  border-color: crimson;
+}
+
+/* The Flashcard (Event Card)*/
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+/* Card Surface */
+.event-card {
+  position: relative;
+  background-color: white;
+  background-image: linear-gradient(180deg, white 0%, snow 100%);
+  border: 1px solid lightblue;
+  border-radius: 20px;
+  padding: 1.6rem;
+  box-shadow: 
+    0 1px 0 white inset,
+    0 6px 18px -3px lightsteelblue,
+    0 2px 6px -1px powderblue;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  overflow: hidden;
+}
+
+/* Color Accent Line on Top of Flashcard */
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.color-blue::before,
+.color-cyan::before {
+  background: linear-gradient(90deg, lightskyblue, royalblue);
+}
+
+.color-emerald::before {
+  background: linear-gradient(90deg, palegreen, seagreen);
+}
+
+.color-amber::before {
+  background: linear-gradient(90deg, gold, darkgoldenrod);
+}
+
+.color-violet::before {
+  background: linear-gradient(90deg, lavender, darkviolet);
+}
+
+.color-rose::before {
+  background: linear-gradient(90deg, lightpink, crimson);
+}
+
+/* Card Hover Elevation */
+.event-card:hover {
+  transform: translateY(-4px);
+  border-color: lightskyblue;
+  box-shadow: 
+    0 1px 0 white inset,
+    0 14px 30px -4px lightsteelblue,
+    0 4px 10px -2px powderblue;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Header: Category & Delete Button */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+/* Category Badges */
+.category-pill {
+  font-size: 0.725rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  background-color: ghostwhite;
+  border: 1px solid silver;
+  color: darkslategray;
+}
+
+.color-blue .category-pill,
+.color-cyan .category-pill {
+  color: royalblue;
+  background-color: aliceblue;
+  border-color: lightblue;
+}
+
+.color-emerald .category-pill {
+  color: seagreen;
+  background-color: honeydew;
+  border-color: palegreen;
+}
+
+.color-amber .category-pill {
+  color: darkgoldenrod;
+  background-color: cornsilk;
+  border-color: gold;
+}
+
+.color-violet .category-pill {
+  color: darkviolet;
+  background-color: lavender;
+  border-color: mediumpurple;
+}
+
+.color-rose .category-pill {
+  color: crimson;
+  background-color: mistyrose;
+  border-color: lightpink;
+}
+
+/* Delete Card Button */
+.delete-card-btn {
+  background-color: transparent;
+  border: none;
+  color: silver;
+  padding: 0.35rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.delete-card-btn:hover {
+  color: crimson;
+  background-color: mistyrose;
+}
+
+/* Event Title & Date */
+.event-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: midnightblue;
+  margin-bottom: 0.4rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+  text-align: left;
+}
+
+.event-date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.825rem;
+  color: darkslategray;
+  margin-bottom: 1.35rem;
+  text-align: left;
+}
+
+.calendar-icon {
+  font-size: 0.875rem;
+}
