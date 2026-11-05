@@ -475,3 +475,144 @@ function handleDeleteEvent(idToDelete) {
             )}
           </div>
         </div>
+{/* Event Cards Grid OR Empty State */}
+        {visibleEvents.length === 0 ? (
+          <div className="empty-state-card">
+            <div className="empty-icon-wrapper">
+              <span className="empty-emoji">⏳</span>
+            </div>
+            <h3 className="empty-title">
+              {events.length === 0
+                ? 'No Countdowns Scheduled Yet'
+                : 'No Countdowns Match This Filter'}
+            </h3>
+            <p className="empty-text">
+              {events.length === 0
+                ? 'Your dashboard is clear! Enter an upcoming event above or load sample events to see the dashboard in action.'
+                : 'Try selecting a different filter tab above to view your events.'}
+            </p>
+            {events.length === 0 && (
+              <button
+                type="button"
+                className="sample-events-btn"
+                onClick={handleLoadSampleEvents}
+              >
+                ⚡ Load Sample Events
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="events-grid">
+            {visibleEvents.map(function (item) {
+              const timeLeft = calculateTimeLeft(item.targetDate);
+
+              return (
+                <div
+                  key={item.id}
+                  className={`event-card color-${item.color || 'blue'} ${
+                    timeLeft.isPast ? 'event-past' : ''
+                  }`}
+                >
+                  {/* Card Header */}
+                  <div className="card-top">
+                    <span className="category-pill">{item.category}</span>
+                    <button
+                      type="button"
+                      className="delete-card-btn"
+                      onClick={function () {
+                        handleDeleteEvent(item.id);
+                      }}
+                      title="Delete event"
+                      aria-label={`Delete event ${item.title}`}
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        <line x1="10" y1="11" x2="10" y2="17" />
+                        <line x1="14" y1="11" x2="14" y2="17" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Title and Formatted Date */}
+                  <h3 className="event-title" title={item.title}>
+                    {item.title}
+                  </h3>
+                  <div className="event-date-row">
+                    <span className="calendar-icon">📅</span>
+                    <span className="event-date-text">
+                      {formatReadableDate(item.targetDate)}
+                    </span>
+                  </div>
+
+                  {/* Countdown Display Boxes OR Arrived Banner */}
+                  {timeLeft.isPast ? (
+                    <div className="event-arrived-badge">
+                      <span className="celebrate-icon">🎉</span>
+                      <div className="arrived-content">
+                        <strong>The moment has arrived!</strong>
+                        <span>This event is happening now or has passed.</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="countdown-display">
+                      <div className="countdown-box">
+                        <span className="countdown-digit">{timeLeft.days}</span>
+                        <span className="countdown-unit">DAYS</span>
+                      </div>
+                      <span className="countdown-separator">:</span>
+                      <div className="countdown-box">
+                        <span className="countdown-digit">{timeLeft.hours}</span>
+                        <span className="countdown-unit">HOURS</span>
+                      </div>
+                      <span className="countdown-separator">:</span>
+                      <div className="countdown-box">
+                        <span className="countdown-digit">{timeLeft.minutes}</span>
+                        <span className="countdown-unit">MINS</span>
+                      </div>
+                      <span className="countdown-separator">:</span>
+                      <div className="countdown-box highlight-sec">
+                        <span className="countdown-digit">{timeLeft.seconds}</span>
+                        <span className="countdown-unit">SECS</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Card Bottom Status */}
+                  <div className="card-footer">
+                    <span className="status-indicator">
+                      <span
+                        className={`status-dot ${
+                          timeLeft.isPast ? 'dot-past' : 'dot-active'
+                        }`}
+                      />
+                      {timeLeft.isPast
+                        ? 'Completed'
+                        : `${timeLeft.days}d ${timeLeft.hours}h remaining`}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Footer */}
+        <footer className="dashboard-footer">
+          <p>
+            React Countdown Dashboard • Real-time event tracking with simple, clean JavaScript.
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+}
