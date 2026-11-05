@@ -5,28 +5,28 @@ import './App.css';
 const defaultEvents = [
   {
     id: 1,
-    title: '🚀 Product Launch',
+    title: 'Product Launch',
     targetDate: '2026-11-20T09:00',
     category: 'Work',
     color: 'blue',
   },
   {
     id: 2,
-    title: '✈️ Summer Vacation',
+    title: 'Summer Vacation',
     targetDate: '2026-12-25T10:00',
     category: 'Travel',
     color: 'amber',
   },
   {
     id: 3,
-    title: '🎉 New Year Celebration',
+    title: 'New Year Celebration',
     targetDate: '2027-01-01T00:00',
     category: 'Celebration',
     color: 'emerald',
   },
   {
     id: 4,
-    title: '🎯 Hackathon Milestone',
+    title: 'Hackathon Milestone',
     targetDate: '2026-10-30T12:00',
     category: 'Goal',
     color: 'violet',
