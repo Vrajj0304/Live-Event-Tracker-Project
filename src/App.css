@@ -168,3 +168,179 @@ body {
   gap: 1rem;
   margin-bottom: 1.65rem;
 }
+.form-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background-color: aliceblue;
+  border: 1px solid lightblue;
+  border-radius: 12px;
+  font-size: 1.15rem;
+}
+
+.form-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: midnightblue;
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+
+.form-desc {
+  font-size: 0.875rem;
+  color: darkslategray;
+  margin-top: 0.15rem;
+  text-align: left;
+}
+
+/* Form Fields */
+.form-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  text-align: left;
+}
+
+.input-label {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: slategray;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+
+.text-input,
+.date-input,
+.select-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: ghostwhite;
+  border: 1px solid silver;
+  border-radius: 12px;
+  color: midnightblue;
+  font-family: inherit;
+  font-size: 0.925rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.text-input::placeholder {
+  color: silver;
+}
+
+.text-input:focus,
+.date-input:focus,
+.select-input:focus {
+  background-color: white;
+  border-color: royalblue;
+  box-shadow: 0 0 0 3px powderblue;
+}
+
+/* Date Picker Indicator */
+.date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.select-input option {
+  background-color: white;
+  color: midnightblue;
+}
+
+/* Quick Date Presets */
+.quick-presets {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.35rem;
+}
+
+.presets-label {
+  font-size: 0.775rem;
+  color: slategray;
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+.preset-btn {
+  background-color: ghostwhite;
+  border: 1px solid silver;
+  color: darkslategray;
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+  background-color: aliceblue;
+  border-color: lightskyblue;
+  color: navy;
+  transform: translateY(-1px);
+}
+
+/* Error Banner */
+.error-banner {
+  background-color: mistyrose;
+  border: 1px solid lightpink;
+  color: crimson;
+  font-size: 0.85rem;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, royalblue 0%, mediumblue 100%);
+  color: white;
+  border: none;
+  font-size: 0.925rem;
+  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px powderblue;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(180deg, dodgerblue 0%, royalblue 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px lightskyblue;
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 1.05rem;
+}
